@@ -1,2 +1,1 @@
-# PHP-POS-SYSTEM
- 
+# IMR-Project

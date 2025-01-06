@@ -3,7 +3,9 @@
     "description": "PHP POS System",
     "require": {
         "php": "^8.0",
-        "ext-mysqli": "*"
+        "ext-mysqli": "*",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*"
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "*"

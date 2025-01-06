@@ -1,7 +1,16 @@
 {
-    "name": "php-pos-system",
+    "name": "yourvendor/php-pos-system",
     "description": "PHP POS System",
     "require": {
-        "php": "^8.0"
+        "php": "^8.0",
+        "ext-mysqli": "*"
+    },
+    "require-dev": {
+        "heroku/heroku-buildpack-php": "*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
     }
 }

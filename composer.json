@@ -1,0 +1,7 @@
+{
+    "name": "php-pos-system",
+    "description": "PHP POS System",
+    "require": {
+        "php": "^8.0"
+    }
+}

@@ -115,7 +115,7 @@ CREATE TABLE Stock (
 CREATE TABLE StockProduct (
     StockID INT,
     ProductID INT,
-    Quantity INT NOT NULL DEFAULT 0;
+    Quantity INT NOT NULL DEFAULT 0,
     PRIMARY KEY (StockID, ProductID),
     FOREIGN KEY (StockID) REFERENCES Stock(StockID),
     FOREIGN KEY (ProductID) REFERENCES Product(ProductID)

@@ -8,20 +8,20 @@ $email = "";
 $successMessage = "";
 $errorMessage = "";
 // setting the initial value of id
-// $newId = 1;
+$newId = 1;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
  //use this function for auto increment of ID if neded
 
-  // $query = "SELECT MAX(CustomerID) AS maxId FROM customer";
-  //   $result = mysqli_query($conn, $query);
-  //   $newId = 1;
+  $query = "SELECT MAX(CustomerID) AS maxId FROM customer";
+    $result = mysqli_query($conn, $query);
+    $newId = 1;
 
-  //   if (mysqli_num_rows($result) > 0) {
-  //       $row = mysqli_fetch_assoc($result);
-  //       $newId = $row['maxId'] + 1;
-  //   }
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $newId = $row['maxId'] + 1;
+    }
 
     $fname = $_POST['firstName'];
     $lname = $_POST['lastName'];
@@ -37,8 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errorMessage = "The email '$email' is already registered!";
     } else {
         // Insert the new record
-        $sql = "INSERT INTO customer ( FirstName, LastName, Contact, Address, Email) 
-                VALUES ('$fname', '$lname', '$contact', '$address', '$email')";
+        $sql = "INSERT INTO customer ( CustomerID,FirstName, LastName, Contact, Address, Email) 
+                VALUES ('$newId','$fname', '$lname', '$contact', '$address', '$email')";
         $result = mysqli_query($conn, $sql);
 
         if (!$result) {
@@ -49,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
     }
-
     mysqli_close($conn);
 }
 ?>
@@ -66,30 +65,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
   <!-- nav bar start-->
-  <nav class="navbar navbar-expand-lg navbar">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php">POS System</a>
+            <div class="ms-auto">
+                <a href="customer.php" class="btn btn-outline-primary">Back</a>
+            </div>
+        </div>
+    </nav>
     <!-- nav bar end-->
     <div class="container mt-4">
     <?php if (!empty($successMessage)): ?>
@@ -100,10 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2 class="mb-4">Add Customer</h2>
     <form method="post">
       <!-- use this function for show ID if neded -->
-    <!-- <div class="mb-3">
-        <label for="customerId" class="form-label">Customer ID</label>
-        <input type="text" class="form-control" id="customerId" name="customerId" value="<?php echo $newId; ?>" readonly>
-    </div> -->
+    
       <div class="mb-3">
         <label for="firstName" class="form-label">First Name</label>
         <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter First Name" value="<?php echo $fname?>" required>
